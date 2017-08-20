@@ -2,22 +2,26 @@ FROM hypriot/rpi-node
 
 MAINTAINER Bruno Cardoso Cantisano <bruno.cantisano@gmail.com>
 
-LABEL Ionic container for Raspberry Pi
+LABEL version latest
+LABEL description Ionic container for Raspberry Pi
 
-RUN npm install -g ionic cordova \
-    && mkdir /usr/local/myApps
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod 755 /entrypoint.sh
 
-RUN rm -rf /usr/local/lib/node_modules \ 
-    && rm -rf ~/.npm \
-    && curl -0 -L https://npmjs.org/install.sh | sudo sh \
-    && npm install -g ionic cordova
+ENV APP_NAME myApp
+ENV TEMPLATE blank
 
-WORKDIR /usr/local/myApps
+RUN apt-get clean \
+    && apt-get -y update \
+    && npm install -g ionic cordova \
+    && mkdir /usr/local/ionic
 
-VOLUME /usr/local/myApps
+WORKDIR /usr/local/ionic/
 
-ENTRYPOINT ionic
+EXPOSE 8000
 
-EXPOSE 80
+VOLUME /usr/local/ionic/
 
-CMD ["serve"]
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["app:serve"]
