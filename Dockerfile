@@ -14,7 +14,7 @@ ENV TEMPLATE blank
 RUN apt-get clean \
     && apt-get -y update \
     && curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - \ 
-	&& apt-get install nodejs \
+    && apt-get install nodejs \
     && npm install -g ionic cordova \
     && mkdir /usr/local/ionic
 

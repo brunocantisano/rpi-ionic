@@ -10,6 +10,10 @@ appStart () {
   tail -f /dev/null
 }
 
+appStop () {
+  echo "Stopping ionic app..."
+}
+
 appServe () {
   set +e
   echo "Starting as server..."
