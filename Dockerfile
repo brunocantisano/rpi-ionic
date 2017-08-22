@@ -1,4 +1,4 @@
-FROM hypriot/rpi-node
+FROM resin/rpi-raspbian
 
 MAINTAINER Bruno Cardoso Cantisano <bruno.cantisano@gmail.com>
 
@@ -13,6 +13,8 @@ ENV TEMPLATE blank
 
 RUN apt-get clean \
     && apt-get -y update \
+    && curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - \ 
+	&& apt-get install nodejs \
     && npm install -g ionic cordova \
     && mkdir /usr/local/ionic
 
