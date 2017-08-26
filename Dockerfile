@@ -1,11 +1,11 @@
-FROM resin/rpi-raspbian
+FROM paperinik/rpi-node
 
 MAINTAINER Bruno Cardoso Cantisano <bruno.cantisano@gmail.com>
 
 LABEL version latest
 LABEL description Ionic container for Raspberry Pi
 
-COPY entrypoint.sh /entrypoint.sh
+COPY files/entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
 
 ENV APP_NAME myApp
@@ -13,16 +13,14 @@ ENV TEMPLATE blank
 
 RUN apt-get clean \
     && apt-get -y update \
-    && curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - \ 
-    && apt-get install nodejs \
     && npm install -g ionic cordova \
-    && mkdir /usr/local/ionic
+    && mkdir /nodejs_apps/ionic
 
-WORKDIR /usr/local/ionic/
+WORKDIR /nodejs_apps/ionic/
 
-EXPOSE 8000
+EXPOSE 3000
 
-VOLUME /usr/local/ionic/
+VOLUME /nodejs_apps/ionic/
 
 ENTRYPOINT ["/entrypoint.sh"]
 

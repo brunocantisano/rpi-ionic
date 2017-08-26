@@ -17,7 +17,7 @@ appStop () {
 appServe () {
   set +e
   echo "Starting as server..."
-  ionic serve --lab -lcs -p 8000
+  ionic serve --lab -lcs -p 3000
   tail -f /dev/null
 }
 
