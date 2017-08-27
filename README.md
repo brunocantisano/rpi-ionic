@@ -49,8 +49,8 @@ Environment variables
 2) If you'd like to be able to create an app:
 ```bash
 docker run --name ionic -d -p 9412:3000 \
-		   --env APP_NAME=teste \
-		   --env TEMPLATE=tutorial \
+           --env APP_NAME=teste \
+           --env TEMPLATE=tutorial \
            -v /media/usbraid/docker/ionic:/nodejs_apps/ionic \
            paperinik/rpi-ionic start
 ```
