@@ -24,4 +24,4 @@ VOLUME /nodejs_apps/ionic/
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["app:serve"]
+CMD ["app:server"]

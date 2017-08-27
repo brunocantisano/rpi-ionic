@@ -14,7 +14,7 @@ appStop () {
   echo "Stopping ionic app..."
 }
 
-appServe () {
+appServer () {
   set +e
   echo "Starting as server..."
   ionic serve --lab -lcs -p 3000
@@ -24,7 +24,7 @@ appServe () {
 appHelp () {
   echo "Available options:"
   echo " app:start          - Creates an ionic app. ex.: ionic start myApp (blank, tabs, sidemenu or tutorial)"
-  echo " app:serve          - Starts the ionic as server (default)"
+  echo " app:server         - Starts the ionic as server (default)"
   echo " app:help           - Displays the help"
   echo " [command]          - Execute the specified linux command eg. bash."
 }
@@ -33,8 +33,8 @@ case "$1" in
   app:start)
     appStart
     ;;
-  app:serve)
-    appServe
+  app:server)
+    appServer
     ;;
   app:help)
     appHelp
