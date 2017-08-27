@@ -46,7 +46,16 @@ Environment variables
 * Description: you must inform a template to be used when creating an app to be used on this container.
 ----
 
-2) If you'd like to be able to access the instance directly at standard port on the host machine:
+2) If you'd like to be able to create an app:
+```bash
+docker run --name ionic -d -p 9412:3000 \
+		   --env APP_NAME=teste \
+		   --env TEMPLATE=tutorial \
+           -v /media/usbraid/docker/ionic:/nodejs_apps/ionic \
+           paperinik/rpi-ionic start
+```
+
+3) If you'd like to be able to access the instance directly at standard port on the host machine:
 ```bash
 docker run --name ionic -d -p 9412:3000 \
            -v /media/usbraid/docker/ionic:/nodejs_apps/ionic \
@@ -54,4 +63,4 @@ docker run --name ionic -d -p 9412:3000 \
 ```
 ----
 
-3) Then, access it via `http://localhost:9412` in a browser.
+4) Then, access it via `http://localhost:9412` in a browser.
