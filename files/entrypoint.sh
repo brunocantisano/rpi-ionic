@@ -3,11 +3,23 @@ set -e
 
 trap appStop SIGINT SIGTERM
 
+APP_NAME=${APP_NAME:-myApp}
+TEMPLATE=${TEMPLATE:-blank}
+USER_NAME=${USER_NAME:-"John Doe"}
+EMAIL=${EMAIL:-johndoe@example.com}
+
 appStart () {
   set +e
+
+  echo "git config..."
+  git config --global user.name ${USER_NAME}
+  git config --global user.email ${EMAIL}
+
   echo "Creating ionic app..."
+
+  cd /nodejs_apps/ionic/
+
   ionic start ${APP_NAME} ${TEMPLATE}
-  tail -f /dev/null
 }
 
 appStop () {
@@ -17,6 +29,9 @@ appStop () {
 appServer () {
   set +e
   echo "Starting as server..."
+
+  cd /nodejs_apps/ionic/${APP_NAME}
+
   ionic serve --lab -lcs -p 3000
   tail -f /dev/null
 }

@@ -10,11 +10,14 @@ RUN chmod 755 /entrypoint.sh
 
 ENV APP_NAME myApp
 ENV TEMPLATE blank
+ENV USER_NAME "John Doe"
+ENV EMAIL johndoe@example.com
 
 RUN apt-get clean \
-    && apt-get -y update \
-    && npm install -g ionic cordova \
-    && mkdir /nodejs_apps/ionic
+    && apt-get update \
+    && apt-get install -y openssh-server openssh-client git build-essential \
+    && mkdir -p /nodejs_apps/ionic/ \
+    && npm install -g ionic cordova 
 
 WORKDIR /nodejs_apps/ionic/
 
